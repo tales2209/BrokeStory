@@ -59,7 +59,6 @@ public class Player : Actor
 
             if(index >= (int)ePlayerState.Attack1 && index <= (int)ePlayerState.Attack4)
             {
-                
                 if (!Ani.IsInTransition(0))
                     return;
 
