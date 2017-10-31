@@ -59,13 +59,9 @@ public class Player : Actor
 
             if(index >= (int)ePlayerState.Attack1 && index <= (int)ePlayerState.Attack4)
             {
-                Debug.Log("잇힝" + Ani.GetInteger("State"));
-
+                
                 if (!Ani.IsInTransition(0))
-                {
-                    Debug.Log("잇힝" + Ani.GetInteger("State"));
                     return;
-                }
 
                 return;
             }            
