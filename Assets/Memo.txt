@@ -1,0 +1,58 @@
+﻿//void Picking()
+    //{
+    //    Ray ray = MainCamera.ScreenPointToRay(Input.mousePosition);
+    //    RaycastHit hit;
+
+    //    int mask = 1 << LayerMask.NameToLayer("Block");
+
+    //    if(Physics.Raycast(ray, out hit, 100.0f, mask))
+    //    {
+    //        Destination = hit.point;            
+    //        Direction = Destination - this.transform.position;
+    //        Direction.y = 0;
+    //        this.transform.forward = Direction.normalized;            
+    //        //this.transform.LookAt(Direction.normalized);           
+    //        NextState = ePlayerState.Run;
+    //        IsMoving = true;
+    //    }
+    //}
+
+    //void DrawRay()
+    //{
+    //    Ray ray = MainCamera.ScreenPointToRay(Input.mousePosition);
+    //    RaycastHit hit;
+    //    int mask = 1 << LayerMask.NameToLayer("Block");
+
+    //    Physics.Raycast(ray, out hit, 100.0f, mask);
+    //    Debug.DrawLine(ray.origin, hit.point, Color.red);        
+    //    Debug.DrawLine(this.transform.position, hit.point, Color.blue);        
+
+
+    //}
+
+    //void Moving()
+    //{
+    //    if (!IsMoving)
+    //        return;
+
+    //    this.transform.Translate(Direction.normalized * Speed * Time.deltaTime, Space.World);
+
+    //    Vector3 pos = transform.position;
+    //    Vector3 dest = Destination;
+    //    pos.y = 0;
+    //    dest.y = 0;
+
+    //    if (Vector3.Distance(pos, dest) <= 0.1f)
+    //    {
+    //        IsStop = true;           
+    //    }
+
+    //    if(IsStop && !IsJumping)
+    //    {
+    //        NextState = ePlayerState.AttackReady;
+    //        IsMoving = false;
+    //        IsStop = false;
+    //    }
+
+
+    //}
