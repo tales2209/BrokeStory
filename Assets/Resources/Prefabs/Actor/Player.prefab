@@ -1483,6 +1483,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamType: 0
   Speed: 2
+  Target: {fileID: 0}
 --- !u!137 &137179375022909114
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

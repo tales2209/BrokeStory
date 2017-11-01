@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class test2
+{
+    public int a;
+}
 public class Player : Actor
 {
     Camera MainCamera;
@@ -16,6 +20,9 @@ public class Player : Actor
     bool IsJump = false;    
     bool IsAttack = false;
     int AttackCnt = 0;
+
+    //Test
+    public Transform Target = null;    
 
     protected override void Awake()
     {
@@ -47,6 +54,11 @@ public class Player : Actor
         if (Input.GetButtonDown("Jump"))
         {            
             Jump();            
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {            
+            
         }
     }
 
