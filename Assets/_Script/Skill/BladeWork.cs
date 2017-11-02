@@ -9,9 +9,9 @@ public class BladeInfo
     public bool Fire;
 }
 
-public class BladeWork : Skill
+public class BladeWork : MonoBehaviour
 {
-    int SwordMax = 12;
+    int SwordMax = 10;
 
     List<BladeInfo> SwordList = new List<BladeInfo>();
 
@@ -19,13 +19,14 @@ public class BladeWork : Skill
 
     float Angle = 0;
     float BladeWorkTime = 0;
-    float FinishTime = 0;
+    float FinishTime = 7;
 
     bool NextPhase = false;
 
     GameObject MainPivot;
+    public Transform Target;   
 
-	void Start ()
+    void Start ()
     {
         Angle = 360 / SwordMax;
         StartCoroutine(BladeWorkInstantiate());
@@ -33,8 +34,8 @@ public class BladeWork : Skill
 	
 	
 	void Update ()
-    {
-        BladeWorkRotation();
+    {               
+        BladeWorkRotation();        
     }
 
     IEnumerator BladeWorkInstantiate()
@@ -43,7 +44,7 @@ public class BladeWork : Skill
         GameObject pivot = null;    // 검의 상위 부모 이녀석을 회전해야 플레이어 중심으로부터 일정한 각도로 회전 시킨 수 있다
         MainPivot = new GameObject();
 
-        MainPivot.transform.SetParent(this.transform, false);   // 환영검 최상위 부모는 플레이어의 자식으로 생성된다
+        //MainPivot.transform.SetParent(this.transform, false);   // 환영검 최상위 부모는 플레이어의 자식으로 생성된다
         MainPivot.name = "MainPivot";
 
         for (int i = 0; i < SwordMax; ++i)  // 최대 검 갯수 만큼 생성
@@ -59,9 +60,9 @@ public class BladeWork : Skill
             blade.Fire = false;
             SwordList.Add(blade);
             ++SwordCnt;
-
-            yield return new WaitForSeconds(0.1f);
         }
+
+        yield return null;
     }
 
     void BladeWorkRotation()
@@ -79,6 +80,8 @@ public class BladeWork : Skill
 
         BladeWorkTime += Time.deltaTime;
 
+        MainPivot.transform.position = transform.position;
+
         if (BladeWorkTime >= FinishTime)
             BladeWorkFireReady();
     }
@@ -88,16 +91,16 @@ public class BladeWork : Skill
         int count = 0;
         NextPhase = true;
         MainPivot.transform.rotation = Quaternion.identity;
+        
 
         foreach (BladeInfo index in SwordList)
         {
-            Angle = -180.0f / SwordMax; // (180 / 갯수) = (각도) 마지막 각도 하나가 빠지는 현상
-            Angle = (Angle - 180.0f) / SwordMax;    // 제거 하는 식
+            Angle = -180 / (SwordMax-1); // (180 / 갯수) = (각도) 마지막 각도 하나가 빠지는 현상            
 
             index.Sword.transform.parent.rotation = Quaternion.identity;
             index.Sword.transform.parent.rotation = Quaternion.AngleAxis(Angle * count, Vector3.forward);
 
-            index.Sword.transform.localPosition = new Vector3(-1.5f, 0, -1.5f);
+            index.Sword.transform.localPosition = new Vector3(-1.0f, 0.0f, -1.0f);
             index.Sword.transform.LookAt(Target.position);
 
             ++count;
@@ -119,6 +122,9 @@ public class BladeWork : Skill
                 sword.Sword.transform.LookAt(Target.position);
             }
 
+            MainPivot.transform.LookAt(Target.position);
+            MainPivot.transform.position = transform.position + new Vector3(0, 0.5f, 0);            
+
             if (SwordList.Count == 0)
                 yield break;
             else
@@ -139,7 +145,6 @@ public class BladeWork : Skill
 
             yield return new WaitForSeconds(0.15f);
         }
-
     }
 
     IEnumerator BladeWorkMove(Transform trans)

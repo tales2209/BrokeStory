@@ -111,8 +111,9 @@ GameObject:
   - component: {fileID: 4259037208834048}
   - component: {fileID: 54429064270890250}
   - component: {fileID: 95988799353368738}
-  - component: {fileID: 114410208735709012}
   - component: {fileID: 65671187451986304}
+  - component: {fileID: 114410208735709012}
+  - component: {fileID: 114974595856231516}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -957,7 +958,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1128703942950342}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 1, y: 1, z: 2}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 4469436720799870}
@@ -1483,7 +1484,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamType: 0
   Speed: 2
-  Target: {fileID: 0}
+--- !u!114 &114974595856231516
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1128703942950342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb10942c1bf22e14fa3adf5e6b739bd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 4845581795863964, guid: 631abeb75b7f02d4c8fd075763e5e7a0, type: 2}
 --- !u!137 &137179375022909114
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

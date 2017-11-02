@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class test2
-{
-    public int a;
-}
 public class Player : Actor
 {
     Camera MainCamera;
@@ -20,10 +16,7 @@ public class Player : Actor
     bool IsJump = false;    
     bool IsAttack = false;
     int AttackCnt = 0;
-
-    //Test
-    public Transform Target = null;    
-
+    
     protected override void Awake()
     {
         IsPlayer = true;
@@ -34,7 +27,7 @@ public class Player : Actor
     {
         MainCamera = Camera.main;
         Ani = GetComponent<Animator>();
-        StoneKing = this.transform.Find("Bip01");
+        StoneKing = this.transform.Find("Bip01");        
     }
     
     protected override void Update()

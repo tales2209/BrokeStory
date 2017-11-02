@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManger : MonoSingleton<GameManger>
 {
+    public Transform StartPoint;
+
     private void Awake()
     {
         Initialize();
@@ -12,6 +14,6 @@ public class GameManger : MonoSingleton<GameManger>
     void Initialize()
     {        
         GameObject go = ActorManager.Inst.GetPrefab(eActorType.Player);
-        Actor player = ActorManager.Inst.InstantiateActor(go, Vector3.up / 2);        
+        Actor player = ActorManager.Inst.InstantiateActor(go, StartPoint.transform.position);        
     }
 }
