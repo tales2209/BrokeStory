@@ -20,6 +20,7 @@ public class BladeWork : MonoBehaviour
     float Angle = 0;
     float BladeWorkTime = 0;
     float FinishTime = 7;
+    float Range = 10;
 
     bool NextPhase = false;
 
@@ -143,6 +144,9 @@ public class BladeWork : MonoBehaviour
             SwordList[pivot - i].Fire = true;
             SwordList[pivot + i + 1].Fire = true;
 
+            StartCoroutine(DeleteSword(SwordList[pivot - i].Sword.transform));
+            StartCoroutine(DeleteSword(SwordList[pivot + i + 1].Sword.transform));
+
             yield return new WaitForSeconds(0.15f);
         }
     }
@@ -151,8 +155,27 @@ public class BladeWork : MonoBehaviour
     {
         while (true)
         {
+            if (trans == null)
+                yield break;
+
             trans.position += trans.forward * 100 * Time.deltaTime;
             yield return null;
         }
+    }
+
+    IEnumerator DeleteSword(Transform sword)
+    {
+        Vector3 startPos = sword.position;
+        
+        while (true)
+        {
+            if (Vector3.Distance(startPos, sword.position) >= Range)
+            {
+                Destroy(sword.gameObject);
+                yield break;
+            }
+
+            yield return null;
+        }       
     }
 }
