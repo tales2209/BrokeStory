@@ -76,7 +76,7 @@ public class Player : Actor
         if (MoveInput != Vector3.zero)
         {
             IsMove = true;            
-            transform.forward = MoveInput.normalized;
+            transform.forward = MoveInput.normalized;            
 
             if (!IsJump)
             {

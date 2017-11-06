@@ -19,7 +19,7 @@ public class BladeWork : MonoBehaviour
 
     float Angle = 0;
     float BladeWorkTime = 0;
-    float FinishTime = 7;
+    float FinishTime = 2;
     float Range = 10;
 
     bool NextPhase = false;
@@ -102,7 +102,7 @@ public class BladeWork : MonoBehaviour
             index.Sword.transform.parent.rotation = Quaternion.AngleAxis(Angle * count, Vector3.forward);
 
             index.Sword.transform.localPosition = new Vector3(-1.0f, 0.0f, -1.0f);
-            index.Sword.transform.LookAt(Target.position);
+            //index.Sword.transform.LookAt(Target.position);
 
             ++count;
         }
@@ -120,10 +120,19 @@ public class BladeWork : MonoBehaviour
                 if (sword.Fire)
                     continue;
 
-                sword.Sword.transform.LookAt(Target.position);
+                if (Target == null)
+                    sword.Sword.transform.rotation = Quaternion.LookRotation(transform.forward);
+                else
+                    sword.Sword.transform.LookAt(Target.position);
+
+                Debug.Log(this.transform.forward);
             }
 
-            MainPivot.transform.LookAt(Target.position);
+            if (Target == null)
+                MainPivot.transform.rotation = Quaternion.LookRotation(transform.forward);
+            else
+                MainPivot.transform.LookAt(Target.position);
+
             MainPivot.transform.position = transform.position + new Vector3(0, 0.5f, 0);            
 
             if (SwordList.Count == 0)
@@ -158,7 +167,11 @@ public class BladeWork : MonoBehaviour
             if (trans == null)
                 yield break;
 
-            trans.position += trans.forward * 100 * Time.deltaTime;
+            if (Target == null)
+                trans.position += this.transform.forward * 100 * Time.deltaTime;
+            else
+                trans.position += trans.forward * 100 * Time.deltaTime;
+
             yield return null;
         }
     }
