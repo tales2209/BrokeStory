@@ -7,6 +7,8 @@ public class Player : Actor
     Camera MainCamera;
     Animator Ani;    
     Transform StoneKing;
+    BladeWork Blade;
+
     ePlayerState CurrentState = ePlayerState.AttackReady;
     ePlayerState NextState = ePlayerState.none;
     public float Speed = 0;
@@ -14,8 +16,10 @@ public class Player : Actor
     float AttackTime = 0;
     bool IsMove = false;
     bool IsJump = false;    
-    bool IsAttack = false;
+    bool IsAttack = false;    
     int AttackCnt = 0;
+
+    public bool IsBladeWork { get; set; }
     
     protected override void Awake()
     {
@@ -27,7 +31,8 @@ public class Player : Actor
     {
         MainCamera = Camera.main;
         Ani = GetComponent<Animator>();
-        StoneKing = this.transform.Find("Bip01");        
+        StoneKing = this.transform.Find("Bip01");
+        Blade = GetComponent<BladeWork>();
     }
     
     protected override void Update()
@@ -49,9 +54,10 @@ public class Player : Actor
             Jump();            
         }
 
-        if(Input.GetKeyDown(KeyCode.Alpha1))
-        {            
-            
+        if(Input.GetKeyDown(KeyCode.Alpha1) && IsBladeWork == false)
+        {
+            Blade.Initialize();
+            IsBladeWork = true;
         }
     }
 

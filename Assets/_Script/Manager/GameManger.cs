@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManger : MonoSingleton<GameManger>
 {
     public Transform StartPoint;
+    public Transform EnemyPoint;
 
     private void Awake()
     {
@@ -14,6 +15,8 @@ public class GameManger : MonoSingleton<GameManger>
     void Initialize()
     {        
         GameObject go = ActorManager.Inst.GetPrefab(eActorType.Player);
-        Actor player = ActorManager.Inst.InstantiateActor(go, StartPoint.transform.position);        
+        Actor player = ActorManager.Inst.InstantiateActor(go, StartPoint.transform.position);
+        go = ActorManager.Inst.GetPrefab(eActorType.Enemy);
+        Actor Enemy = ActorManager.Inst.InstantiateActor(go, EnemyPoint.transform.position);
     }
 }

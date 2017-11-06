@@ -35,13 +35,19 @@ public class Actor : BaseObject
         set { _ActorType = value; }
     }
 
-        
-
     BaseAI _AI = null;
     public BaseAI AI
     {
         get { return _AI; }
     }
+
+    Actor _Target = null;
+    public Actor Target
+    {
+        get { return _Target; }
+        set { _Target = value; }
+    }
+        
 
     virtual protected void Awake()
     {
@@ -50,7 +56,7 @@ public class Actor : BaseObject
 
     virtual protected void Update()
     {
-        AI.UpdateAI();
+       // AI.UpdateAI();
     }
 
     void Initialize()
@@ -61,18 +67,18 @@ public class Actor : BaseObject
             return;
         }
 
-        switch (AIType)
-        {   
-            case eAIType.Normal:
-                {
-                    GameObject ai = new GameObject(AIType.ToString(), typeof(NormaAI));
-                    ai.transform.SetParent(SelfTransform);
-                    _AI = ai.GetComponent<NormaAI>();
-                }
-                break;
-        }
+        //switch (AIType)
+        //{   
+        //    case eAIType.Normal:
+        //        {
+        //            GameObject ai = new GameObject(AIType.ToString(), typeof(NormaAI));
+        //            ai.transform.SetParent(SelfTransform);
+        //            _AI = ai.GetComponent<NormaAI>();
+        //        }
+        //        break;
+        //}
 
-        AI.LinkObject = this;
+        //AI.LinkObject = this;
 
         ActorManager.Inst.AddActor(this);
     }

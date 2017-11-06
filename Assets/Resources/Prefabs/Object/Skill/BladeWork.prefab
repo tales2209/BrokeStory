@@ -37,6 +37,8 @@ GameObject:
   - component: {fileID: 33748257270307970}
   - component: {fileID: 23616037182650538}
   - component: {fileID: 65452166936384342}
+  - component: {fileID: 114686845047098608}
+  - component: {fileID: 54098229203009540}
   m_Layer: 0
   m_Name: Dragonblade
   m_TagString: Untagged
@@ -110,6 +112,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1971781534059378}
   m_Mesh: {fileID: 4300000, guid: 4f5854f24c1370b4d887ec9a18399327, type: 3}
+--- !u!54 &54098229203009540
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1971781534059378}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &65452166936384342
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -122,3 +139,14 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.29658815, y: 1.6432192, z: 0.076855406}
   m_Center: {x: -0.000059001177, y: 0.8220136, z: -0.0017536959}
+--- !u!114 &114686845047098608
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1971781534059378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d6eb2284995614eb903abe3fec112f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

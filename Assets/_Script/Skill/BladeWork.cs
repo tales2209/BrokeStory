@@ -25,18 +25,28 @@ public class BladeWork : MonoBehaviour
     bool NextPhase = false;
 
     GameObject MainPivot;
-    public Transform Target;   
+    GameObject Prepap;    
+
+    public Transform Target;
+
+    private void Awake()
+    {
+        Prepap = Resources.Load("Prefabs/Object/Skill/BladeWork") as GameObject;
+    }
 
     void Start ()
     {
-        Angle = 360 / SwordMax;
-        StartCoroutine(BladeWorkInstantiate());
+        Angle = 360 / SwordMax;        
     }
-	
 	
 	void Update ()
     {               
         BladeWorkRotation();        
+    }
+
+    public void Initialize()
+    {
+        StartCoroutine(BladeWorkInstantiate());
     }
 
     IEnumerator BladeWorkInstantiate()
@@ -54,10 +64,8 @@ public class BladeWork : MonoBehaviour
             pivot = new GameObject();
             pivot.name = "Pivot" + i;
             pivot.transform.SetParent(MainPivot.transform, false);       // true false의 차이?
-            pivot.transform.rotation = Quaternion.AngleAxis(Angle * i, Vector3.up);
-
-            blade.Sword = Resources.Load("Prefabs/Object/Skill/BladeWork") as GameObject;
-            blade.Sword = Instantiate(blade.Sword, pivot.transform);
+            pivot.transform.rotation = Quaternion.AngleAxis(Angle * i, Vector3.up);            
+            blade.Sword = Instantiate(Prepap, pivot.transform);
             blade.Fire = false;
             SwordList.Add(blade);
             ++SwordCnt;
@@ -102,8 +110,6 @@ public class BladeWork : MonoBehaviour
             index.Sword.transform.parent.rotation = Quaternion.AngleAxis(Angle * count, Vector3.forward);
 
             index.Sword.transform.localPosition = new Vector3(-1.0f, 0.0f, -1.0f);
-            //index.Sword.transform.LookAt(Target.position);
-
             ++count;
         }
 
@@ -123,9 +129,7 @@ public class BladeWork : MonoBehaviour
                 if (Target == null)
                     sword.Sword.transform.rotation = Quaternion.LookRotation(transform.forward);
                 else
-                    sword.Sword.transform.LookAt(Target.position);
-
-                Debug.Log(this.transform.forward);
+                    sword.Sword.transform.LookAt(Target.position);                
             }
 
             if (Target == null)
@@ -133,16 +137,22 @@ public class BladeWork : MonoBehaviour
             else
                 MainPivot.transform.LookAt(Target.position);
 
-            MainPivot.transform.position = transform.position + new Vector3(0, 0.5f, 0);            
+            MainPivot.transform.position = transform.position + new Vector3(0, 0.5f, 0);
 
-            if (SwordList.Count == 0)
+            if (SwordCnt <= 0)
+            {
+                ResetSkill();
                 yield break;
+            }
             else
                 yield return null;
         }
     }
+
     IEnumerator BladeWorkFire()
     {
+        yield return new WaitForSeconds(0.3f);
+
         int pivot = (SwordMax / 2) - 1;
 
         for (int i = 0; i <= pivot; ++i)
@@ -153,10 +163,10 @@ public class BladeWork : MonoBehaviour
             SwordList[pivot - i].Fire = true;
             SwordList[pivot + i + 1].Fire = true;
 
-            StartCoroutine(DeleteSword(SwordList[pivot - i].Sword.transform));
-            StartCoroutine(DeleteSword(SwordList[pivot + i + 1].Sword.transform));
+            StartCoroutine(DeleteSword(SwordList[pivot - i]));
+            StartCoroutine(DeleteSword(SwordList[pivot + i + 1]));
 
-            yield return new WaitForSeconds(0.15f);
+            yield return new WaitForSeconds(0.2f);
         }
     }
 
@@ -176,19 +186,32 @@ public class BladeWork : MonoBehaviour
         }
     }
 
-    IEnumerator DeleteSword(Transform sword)
+    IEnumerator DeleteSword(BladeInfo sword)
     {
-        Vector3 startPos = sword.position;
+        Transform trans = sword.Sword.transform;
+        Vector3 startPos = trans.position;
         
         while (true)
         {
-            if (Vector3.Distance(startPos, sword.position) >= Range)
-            {
-                Destroy(sword.gameObject);
+            if (Vector3.Distance(startPos, trans.position) >= Range)
+            {                
+                Destroy(trans.gameObject);
+                --SwordCnt;
                 yield break;
             }
 
             yield return null;
         }       
+    }
+
+    void ResetSkill()
+    {
+        BladeWorkTime = 0;
+        SwordCnt = 0;
+        Angle = 360 / SwordMax;
+        NextPhase = false;
+        SwordList.Clear();
+        Destroy(MainPivot);
+        ((Player)ActorManager.Inst.GetPlayer()).IsBladeWork = false;
     }
 }
