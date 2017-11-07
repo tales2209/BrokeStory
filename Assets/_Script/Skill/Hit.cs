@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class Hit : MonoBehaviour
 {
-    private void Awake()
+    private void OnTriggerEnter(Collider other)
     {
-        int a = 10;
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy")
         {
-            Debug.Log("Hit");
+            Debug.Log("other Hit");
         }
-
-    }
-
+    }    
 }
