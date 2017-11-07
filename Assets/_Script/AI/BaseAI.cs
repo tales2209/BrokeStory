@@ -12,6 +12,19 @@ public class NextAI
 
 public class BaseAI : BaseObject
 {
+
+
+    //BossPigAI에서 사용
+    public AttackType attackType = AttackType.Normal_Attack;
+    bool _IsSkill = false;
+    public bool IsSkill
+    {
+        get { return _IsSkill; }
+        set { _IsSkill = value; }
+    }
+
+
+
     protected List<NextAI> ListNextAI = new List<NextAI>();
 
     protected eAIStateType _CurrentState = eAIStateType.Idle;
@@ -51,7 +64,7 @@ public class BaseAI : BaseObject
         }
     }
 
-
+    
     NavMeshAgent _NavAgent = null;
     public NavMeshAgent NavAgent
     {
@@ -80,6 +93,12 @@ public class BaseAI : BaseObject
 
         return false;
     }
+
+    public virtual void SetTarget()
+    {
+
+    }
+
 
     protected void SetMove()
     {

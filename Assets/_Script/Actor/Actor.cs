@@ -22,7 +22,8 @@ public class Actor : BaseObject
 
     BaseObject AttackTarget = null;
 
-    eAIType _AIType = eAIType.Normal;
+    [SerializeField]
+    eAIType _AIType = eAIType.AI_NONE;
     public eAIType AIType
     {
         get { return _AIType; }
@@ -67,18 +68,36 @@ public class Actor : BaseObject
             return;
         }
 
-        //switch (AIType)
-        //{   
-        //    case eAIType.Normal:
-        //        {
-        //            GameObject ai = new GameObject(AIType.ToString(), typeof(NormaAI));
-        //            ai.transform.SetParent(SelfTransform);
-        //            _AI = ai.GetComponent<NormaAI>();
-        //        }
-        //        break;
-        //}
-
-        //AI.LinkObject = this;
+        switch (AIType)
+        {
+            case eAIType.AI_NONE:
+                break;
+            case eAIType.AI_Normal:
+                {
+                    GameObject ai = new GameObject(AIType.ToString(), typeof(NormaAI));
+                    ai.transform.SetParent(SelfTransform);
+                    _AI = ai.GetComponent<NormaAI>();
+                }
+                break;
+            case eAIType.AI_DRAGON:
+                {
+                    GameObject ai = new GameObject(AIType.ToString(), typeof(BossDragonAI));
+                    ai.transform.SetParent(SelfTransform);
+                    _AI = ai.GetComponent<BossDragonAI>();
+                }
+                break;
+            case eAIType.AI_PIG:
+                {
+                    GameObject ai = new GameObject(AIType.ToString(), typeof(BossPigAI));
+                    ai.transform.SetParent(SelfTransform);
+                    _AI = ai.GetComponent<BossPigAI>();
+                }
+                break;
+            default:
+                break;
+        }
+        if(AIType != eAIType.AI_NONE)
+        AI.LinkObject = this;
 
         ActorManager.Inst.AddActor(this);
     }

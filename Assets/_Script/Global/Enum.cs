@@ -48,8 +48,22 @@ public enum eAIStateType
 
 public enum eAIType
 {
-    Normal
+    AI_NONE,
+    AI_Normal,
+    AI_DRAGON,
+    AI_PIG,
 }
+
+
+//BossPigAI 에서 사용
+public enum AttackType
+{
+    Normal_Attack,
+    Dash_Attack,
+    Smite_Attack,
+    Weapon_Attack,
+}
+
 
 public enum eRegenType
 {

@@ -9,6 +9,9 @@ public static class ConstValue
     public const string ActorData_GetTeam = "GET_TEAM";
 
     //SetDataKey
-    public const string ActorData_SetTarget = "SET_TARGET";   
+    public const string ActorData_SetTarget = "SET_TARGET";
 
+
+    //EventKey
+    public const string EventKey_Hit = "EVENT_HIT";
 }
