@@ -212,48 +212,6 @@ MonoBehaviour:
   Distance: 4
   Height: 5
   Far: 2
---- !u!1001 &576680207
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4120777656595822, guid: 4e85f564289c57a4296718d30d273c52, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -4.5161734
-      objectReference: {fileID: 0}
-    - target: {fileID: 4120777656595822, guid: 4e85f564289c57a4296718d30d273c52, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -1.3000002
-      objectReference: {fileID: 0}
-    - target: {fileID: 4120777656595822, guid: 4e85f564289c57a4296718d30d273c52, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 232.24104
-      objectReference: {fileID: 0}
-    - target: {fileID: 4120777656595822, guid: 4e85f564289c57a4296718d30d273c52, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4120777656595822, guid: 4e85f564289c57a4296718d30d273c52, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4120777656595822, guid: 4e85f564289c57a4296718d30d273c52, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4120777656595822, guid: 4e85f564289c57a4296718d30d273c52, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4120777656595822, guid: 4e85f564289c57a4296718d30d273c52, type: 2}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 4e85f564289c57a4296718d30d273c52, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &717571158
 GameObject:
   m_ObjectHideFlags: 0
