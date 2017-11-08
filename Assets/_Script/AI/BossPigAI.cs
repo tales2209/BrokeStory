@@ -71,7 +71,7 @@ public class BossPigAI : BaseAI
 
     public override void SetTarget()
     {
-        if (target != null)
+        if (target == null)
             target = GameObject.FindObjectOfType<Player>() as BaseObject;
     }
 
@@ -172,7 +172,7 @@ public class BossPigAI : BaseAI
         AttackRange = 5f;
 
         //target = GameObject.FindObjectOfType<Player_Test>();
-        dist = Vector3.Distance(target.transform.position, transform.position);
+        dist = Vector3.Distance(target.transform.position, LinkObject.transform.position);
 
         if (target != null)
         {
@@ -219,7 +219,7 @@ public class BossPigAI : BaseAI
         //AttackRange = 5f;
 
         //target = GameObject.FindObjectOfType<Player_Test>();
-        dist = Vector3.Distance(target.transform.position, transform.position);
+        dist = Vector3.Distance(target.transform.position, LinkObject.transform.position);
 
         if (target != null)
         {
@@ -235,7 +235,7 @@ public class BossPigAI : BaseAI
             {
                 MovePosition = target.transform.position;
 
-                SetMove();
+                SetMove(MovePosition);
 
                 AddNextAI(eAIStateType.Move, target);
             }
@@ -454,15 +454,15 @@ public class BossPigAI : BaseAI
 
     // Dash 상태일때 벽과 충돌시 IsSkill 을 종료 시킨다.
     // 스크립트 합친 다음에 실험
-    private void OnTriggerEnter(Collider other)
-    {
-        if(attackType == AttackType.Dash_Attack)
-        {
-            if(other.tag == "Wall")
-            {
-                IsSkill = false;
-                AddNextAI(eAIStateType.Idle);
-            }
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if(attackType == AttackType.Dash_Attack)
+    //    {
+    //        if(other.tag == "Wall")
+    //        {
+    //            IsSkill = false;
+    //            AddNextAI(eAIStateType.Idle);
+    //        }
+    //    }
+    //}
 }
