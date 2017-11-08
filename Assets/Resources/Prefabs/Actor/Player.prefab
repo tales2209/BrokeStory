@@ -1474,9 +1474,9 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &65211590646624662
 BoxCollider:
@@ -1489,7 +1489,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.05, y: 0.09, z: 0.05}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.05, z: 0}
 --- !u!65 &65971283974597674
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1510,7 +1510,7 @@ BoxCollider:
   m_GameObject: {fileID: 1639402197118786}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.03, y: 0.04, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1705,7 +1705,7 @@ NavMeshAgent:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1128703942950342}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.03
   m_Speed: 3.5

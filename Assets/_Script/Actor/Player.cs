@@ -7,6 +7,7 @@ public class Player : Actor
     Camera MainCamera;
     Animator Ani;    
     Transform StoneKing;
+    BoxCollider WeaponeBox;
     BladeWork Blade;
 
     ePlayerState CurrentState = ePlayerState.AttackReady;
@@ -24,6 +25,7 @@ public class Player : Actor
     protected override void Awake()
     {
         IsPlayer = true;
+        WeaponeBox = Getchild("WeaponeBox").GetComponent<BoxCollider>();
         base.Awake();        
     }
 
@@ -120,6 +122,7 @@ public class Player : Actor
         if(Input.GetKeyDown(KeyCode.Z))
         {
             IsAttack = true;
+            WeaponeBox.enabled = true;
 
             if (IsJump)
                 NextState = ePlayerState.Attack4;
@@ -147,6 +150,7 @@ public class Player : Actor
                 AttackTime = 0;
                 AttackCnt = 0;
                 IsAttack = false;
+                WeaponeBox.enabled = false;
             }
         }
     }
