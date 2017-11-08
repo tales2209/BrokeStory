@@ -465,9 +465,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4278905291625010}
   - component: {fileID: 65977277172540624}
+  - component: {fileID: 114458434777891080}
   m_Layer: 8
   m_Name: WeaponeBox
-  m_TagString: Untagged
+  m_TagString: AttackBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -618,7 +619,7 @@ GameObject:
   - component: {fileID: 65971283974597674}
   m_Layer: 8
   m_Name: HitBox
-  m_TagString: Untagged
+  m_TagString: HitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1500,8 +1501,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.05, z: 0.05}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.056043044, y: 0.034516975, z: 0.035941098}
+  m_Center: {x: 0.00017467952, y: -0.0030291225, z: -0.007029455}
 --- !u!65 &65977277172540624
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1545,6 +1546,17 @@ MonoBehaviour:
   teamType: 0
   _AIType: 0
   Speed: 2
+--- !u!114 &114458434777891080
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1639402197118786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c081f9237e99dc64b89f87cc8d7f330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114750327757727118
 MonoBehaviour:
   m_ObjectHideFlags: 1

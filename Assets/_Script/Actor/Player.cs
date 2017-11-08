@@ -179,12 +179,4 @@ public class Player : Actor
             IsJump = false;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag == "Enemy")
-        {
-            Debug.Log("Stone Hit!");
-        }
-            
-    }
 }

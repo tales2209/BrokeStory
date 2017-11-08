@@ -4,8 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - PlayerFrontBox
   - Enemy
+  - HitBox
+  - AttackBox
+  - Storm
   layers:
   - Default
   - TransparentFX

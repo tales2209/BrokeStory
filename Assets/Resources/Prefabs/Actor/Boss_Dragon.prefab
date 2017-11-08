@@ -462,7 +462,7 @@ GameObject:
   - component: {fileID: 114852458587785200}
   m_Layer: 0
   m_Name: Attack_Collider
-  m_TagString: Untagged
+  m_TagString: AttackBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -840,6 +840,22 @@ GameObject:
   m_Layer: 0
   m_Name: collar_bone_L
   m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1450610552278482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4622884536736248}
+  - component: {fileID: 65196333847567278}
+  m_Layer: 0
+  m_Name: HitBox
+  m_TagString: HitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1533,7 +1549,6 @@ GameObject:
   - component: {fileID: 195588072976482224}
   - component: {fileID: 114361425398741726}
   - component: {fileID: 54852698763368350}
-  - component: {fileID: 136003509781099068}
   m_Layer: 0
   m_Name: Boss_Dragon
   m_TagString: Enemy
@@ -2153,6 +2168,7 @@ Transform:
   - {fileID: 4281475626830354}
   - {fileID: 4083937905816850}
   - {fileID: 4999673206985744}
+  - {fileID: 4622884536736248}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3036,6 +3052,19 @@ Transform:
   m_Father: {fileID: 4185964417857948}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4622884536736248
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1450610552278482}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4120777656595822}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4622930005818064
 Transform:
   m_ObjectHideFlags: 1
@@ -3812,6 +3841,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65196333847567278
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1450610552278482}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7, y: 8, z: 7}
+  m_Center: {x: 0, y: 5, z: 0}
 --- !u!65 &65392795437962970
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -3882,19 +3923,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 471cc689dfe41ce44aa28c4fd66cc6c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!136 &136003509781099068
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1792139444096980}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 5
-  m_Height: 10
-  m_Direction: 1
-  m_Center: {x: 0, y: 5, z: 0}
 --- !u!137 &137504162537822846
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
