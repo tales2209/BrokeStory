@@ -96,8 +96,9 @@ public class Actor : BaseObject
             default:
                 break;
         }
-        if(AIType != eAIType.AI_NONE)
-        AI.LinkObject = this;
+
+        if (AIType != eAIType.AI_NONE)
+            AI.LinkObject = this;
 
         ActorManager.Inst.AddActor(this);
     }

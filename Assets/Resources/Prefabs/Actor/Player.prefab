@@ -464,9 +464,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4278905291625010}
   - component: {fileID: 65977277172540624}
+  - component: {fileID: 114458434777891080}
   m_Layer: 8
   m_Name: WeaponeBox
-  m_TagString: Untagged
+  m_TagString: AttackBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -617,7 +618,7 @@ GameObject:
   - component: {fileID: 65971283974597674}
   m_Layer: 8
   m_Name: HitBox
-  m_TagString: Untagged
+  m_TagString: HitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1475,7 +1476,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &65211590646624662
 BoxCollider:
@@ -1488,7 +1489,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.05, y: 0.09, z: 0.05}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.05, z: 0}
 --- !u!65 &65971283974597674
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1499,8 +1500,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.05, z: 0.05}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.056043044, y: 0.034516975, z: 0.035941098}
+  m_Center: {x: 0.00017467952, y: -0.0030291225, z: -0.007029455}
 --- !u!65 &65977277172540624
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1509,7 +1510,7 @@ BoxCollider:
   m_GameObject: {fileID: 1639402197118786}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.03, y: 0.04, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1544,6 +1545,17 @@ MonoBehaviour:
   teamType: 0
   _AIType: 0
   Speed: 2
+--- !u!114 &114458434777891080
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1639402197118786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c081f9237e99dc64b89f87cc8d7f330c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114750327757727118
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1698,3 +1710,27 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.04612641, y: -0.000060377643, z: -0.00030555204}
     m_Extent: {x: 0.0570381, y: 0.022350969, z: 0.020368984}
   m_DirtyAABB: 0
+<<<<<<< HEAD
+=======
+--- !u!195 &195190503881764860
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1128703942950342}
+  m_Enabled: 0
+  m_AgentTypeID: 0
+  m_Radius: 0.03
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.06
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+>>>>>>> db6a19a0fc06ef092b7f85f1a72ac90cf0564c38

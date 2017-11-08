@@ -12,7 +12,7 @@ public enum eBaseState
 public enum eActorType
 {
     Player,
-    Enemy,
+    Boss_Dragon,
     //Shooter,
     Max
 }

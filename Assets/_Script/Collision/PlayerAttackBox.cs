@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hit : MonoBehaviour
+public class PlayerAttackBox : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if(other.gameObject.tag == "HitBox")
         {
-            Debug.Log("other Hit");
+            Debug.Log("플레이어가 몹 때림 으앙");
         }
-    }    
+    }
 }

@@ -27,7 +27,7 @@ public class BladeWork : MonoBehaviour
     GameObject MainPivot;
     GameObject Prepap;    
 
-    public Transform Target;
+    Transform Target;
 
     private void Awake()
     {
@@ -119,6 +119,12 @@ public class BladeWork : MonoBehaviour
 
     IEnumerator LookAt()
     {
+        float temp;        
+        BaseObject enemy = ActorManager.Inst.GetSerchEnemy(ActorManager.Inst.GetPlayer(), out temp);
+
+        if (enemy != null)
+            Target = enemy.Getchild("Target");
+
         while (true)
         {
             foreach (BladeInfo sword in SwordList)
