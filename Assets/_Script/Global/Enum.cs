@@ -44,6 +44,7 @@ public enum eAIStateType
     Move,
     Attack,
     Skill1,
+    Hit,
     Die
 }
 

@@ -25,8 +25,8 @@ public class GameManger : MonoSingleton<GameManger>
         go = ActorManager.Inst.GetPrefab(eActorType.Boss_Pig);
         Actor Enemy = ActorManager.Inst.InstantiateActor(go, EnemyPoint.transform.position);
 
-        //go = ActorManager.Inst.GetPrefab(eActorType.Boss_Dragon);
-        //Actor Enemy = ActorManager.Inst.InstantiateActor(go, EnemyPoint.transform.position);
+        go = ActorManager.Inst.GetPrefab(eActorType.Boss_Dragon);
+        Actor  Enemy_2 = ActorManager.Inst.InstantiateActor(go, EnemyPoint.transform.position);
 
         GameObject[] EnemyGo = GameObject.FindGameObjectsWithTag("Enemy");
         

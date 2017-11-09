@@ -8,7 +8,8 @@ public class BladeAttackBox : MonoBehaviour
     {
         if (other.gameObject.tag == "HitBox")
         {
-            Debug.Log("검 스킬이 후둘겨 팹니다");
+          Actor enemy =  other.GetComponentInParent<Actor>();
+            enemy.ThrowEvent(ConstValue.EventKey_Hit);
         }
     }    
 }

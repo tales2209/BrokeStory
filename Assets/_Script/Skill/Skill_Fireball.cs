@@ -90,6 +90,7 @@ public class Skill_Fireball : MonoBehaviour {
     
     private void OnTriggerEnter(Collider other)
     {
+        
         //충돌한 게임오브젝트가 플레이어이고 파이어볼 생성된지 5초가 지났으면 데미지처리 & 파이어볼 삭제
         if( other.gameObject == GameObject.FindGameObjectWithTag("Player") && time > 5)
         {

@@ -8,7 +8,9 @@ public class PlayerAttackBox : MonoBehaviour
     {
         if(other.gameObject.tag == "HitBox")
         {
-            Debug.Log("플레이어가 몹 때림 으앙");
+            Actor enemy = other.GetComponentInParent<Actor>();
+            enemy.ThrowEvent(ConstValue.EventKey_Hit);
+            //Debug.Log("플레이어가 몹 때림 으앙");
         }
     }
 }

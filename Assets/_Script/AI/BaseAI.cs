@@ -35,6 +35,12 @@ public class BaseAI : BaseObject
     }
 
     bool bUpdateAI = false;
+    public bool _bUpdateAI
+    {
+        get { return bUpdateAI; }
+        set { bUpdateAI = value; }
+    }
+
     bool _IsAttack = false;
     public bool IsAttack
     {
@@ -118,7 +124,7 @@ public class BaseAI : BaseObject
 
     }
 
-    protected void Stop()
+    public void Stop()
     {
         MovePosition = Vector3.zero;
         NavAgent.isStopped = true;
@@ -265,8 +271,16 @@ public class BaseAI : BaseObject
         }
     }
 
-    public void ChangeAnimation()
+    public void ChangeAnimation(eAIStateType AIState = eAIStateType.None)
     {
-        Ani.SetInteger("State", (int)_CurrentState);
+        if(AIState != eAIStateType.None)    //매개변수 주어졌다면 현재상태 바꾸지않고 애니메이션만 해당 enum값에 해당하는걸로 바꿈
+        {
+        Ani.SetInteger("State", (int)AIState);
+
+        }
+        else
+        {
+            Ani.SetInteger("State", (int)_CurrentState);
+        }
     }
 }
