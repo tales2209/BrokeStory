@@ -144,6 +144,4 @@ public class UITools : MonoSingleton<UITools>
         SubUIRoot.transform.position = uIRoot.transform.position;
         SubUIRoot.transform.localScale = uIRoot.transform.localScale;
     }
-
-
 }
