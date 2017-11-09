@@ -328,7 +328,7 @@ public class BossPigAI : BaseAI
         if (WeaponTimer == 5)
         {
             TargetPos.x = target.transform.position.x;
-            TargetPos.y = target.transform.position.y - 4.7f;
+            TargetPos.y = target.transform.position.y - 10f;
             TargetPos.z = target.transform.position.z;
             CreatPos = new Vector3(TargetPos.x, TargetPos.y, TargetPos.z);
         }
@@ -352,7 +352,7 @@ public class BossPigAI : BaseAI
         {
             for (int j = 0; j < 3; j++)
             {
-                Prefabs = Instantiate(Spear, TargetPos + RandomPos(), Quaternion.identity);
+                Prefabs = Instantiate(Spear, CreatPos + RandomPos(), Quaternion.identity);
 
                 if (skillHolder != null)
                 {
