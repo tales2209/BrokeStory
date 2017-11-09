@@ -100,22 +100,17 @@ public class BaseAI : BaseObject
     }
 
 
-    protected void SetMove(Vector3 dest)
+    protected void SetMove()
     {
-        dest.y = LinkObject.transform.position.y;
-
-        if (PreMovePosition != dest)
+        if (PreMovePosition == MovePosition)
         {
-
-        NavAgent.isStopped = false;
-        NavAgent.SetDestination(dest);        
-        PreMovePosition = dest;
-
-
-
-
+            AddNextAI(eAIStateType.Idle);
+            return;
         }
 
+        PreMovePosition = MovePosition;
+        NavAgent.isStopped = false;
+        NavAgent.SetDestination(MovePosition);        
     }
 
     protected void Stop()
@@ -206,7 +201,7 @@ public class BaseAI : BaseObject
                 ProcessMove();               
                 break;
             case eAIStateType.Attack:
-                //TargetLookAt(nextAI.Target);
+                TargetLookAt(nextAI.Target);
                 ProcessAttack();
                 break;
             case eAIStateType.Die:

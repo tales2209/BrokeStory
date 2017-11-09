@@ -43,7 +43,7 @@ public class NormaAI : BaseAI
             }
             else
             {
-                SetMove(target.transform.position);
+                SetMove();
             }
         }
 

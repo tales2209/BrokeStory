@@ -25,15 +25,12 @@ public class BossDragonAI : BaseAI
     int fireballMakeTime = 0;   //파이어볼 타이밍체크
     public int howManyFireball = 24; //파이어볼 생성 갯수
     public float Skill_1_RotateSpeed = 5f;  //파이어볼 생성할때 회전 속도
-    public float attackRange = 2f;
 
     public override void SetTarget()
     {
         AttackTarget = GameObject.FindObjectOfType<Player>() as BaseObject;
      
     }
-
-
     private void Awake()
     {
         //AttackTarget = GameObject.FindObjectOfType<Player>() as BaseObject;
@@ -47,51 +44,35 @@ public class BossDragonAI : BaseAI
     
     protected override IEnumerator Idle()
     {
-        Stop();
-
-        if ( AttackTarget!= null)
+       if( AttackTarget!= null)
         {
 
-            //거리가 1 이하면
-            if (Vector3.Distance(AttackTarget.transform.position, LinkObject.transform.position) < attackRange)
-            {
-                Stop();
-                transform.LookAt(AttackTarget.transform);
-                AddNextAI(eAIStateType.Attack, AttackTarget);
-            }
-            else
-            {
-
-                //AddNextAI(eAIStateType.Attack,(BaseObject)AttackTarget, AttackTarget.transform.position);
-                transform.LookAt(AttackTarget.transform);
-                //SetMove(AttackTarget.transform.position); //목적지 설정
-                AddNextAI(eAIStateType.Move);
-            }
+            AddNextAI(eAIStateType.Move);
 
         }
 
 
 
-       yield return StartCoroutine(base.Idle());
+        return base.Idle();
     }
 
     protected override IEnumerator Move()
     {
 
         //거리가 1 이하면
-        if(Vector3.Distance(AttackTarget.transform.position, LinkObject.transform.position) < attackRange)
+        if(Vector3.Distance(AttackTarget.transform.position, LinkObject.transform.position) < AttackTarget.transform.localScale.z + LinkObject.transform.localScale.z )
         {
             Stop();
             transform.LookAt(AttackTarget.transform);
-            AddNextAI(eAIStateType.Attack,AttackTarget);
+            AddNextAI(eAIStateType.Attack);
         }
         else
         {
 
             //AddNextAI(eAIStateType.Attack,(BaseObject)AttackTarget, AttackTarget.transform.position);
+            SetMove(); //목적지 설정
             transform.LookAt(AttackTarget.transform);
-            SetMove(AttackTarget.transform.position); //목적지 설정
-            AddNextAI(eAIStateType.Move);
+            AddNextAI(eAIStateType.Move, (BaseObject)AttackTarget, AttackTarget.transform.position);
         }
         
         
@@ -101,11 +82,9 @@ public class BossDragonAI : BaseAI
     
     protected override IEnumerator Attack()
     {
-        Stop();
         //공격 처리 들어가기 전의 잠깐의 텀을 준다
         //IsAttack = true;
-        yield return new WaitForEndOfFrame();
-
+        //yield return new WaitForEndOfFrame();
         while (IsAttack)
         {
             if (ObjectState == eBaseState.Die)
@@ -135,12 +114,10 @@ public class BossDragonAI : BaseAI
 
     IEnumerator Skill_1()
     {
-
         ListNextAI.Clear();
 
         fireballMakeTime = 0;
         LinkObject.transform.LookAt(AttackTarget.transform);
-
         if(FireballHolder == null)
         {
             FireballHolder = new GameObject("FireballHolder");
@@ -166,10 +143,9 @@ public class BossDragonAI : BaseAI
         while(true)
         {
 
-            if (FireballCount >= howManyFireball)   //파이어볼이 전부 생성된뒤
+            if (FireballCount >= howManyFireball)
             {
-                LinkObject.transform.LookAt(AttackTarget.transform);
-                //Ani.SetInteger("SKILL", 1);
+                Ani.SetInteger("SKILL", 1);
                 //EFFECT OFF
                 if (LinkObject.transform.Find("StormEffect").gameObject.activeSelf == true)
                 {
@@ -179,17 +155,14 @@ public class BossDragonAI : BaseAI
 
                 if (List_Fireball.Count <= 1)
                 {
-                    Ani.SetInteger("SKILL", 0);
                     b_UpdateBaseAI = true;
                     IsAttack = false;
                     FireballCount = 0;
-                    _CurrentState = eAIStateType.Idle;
                     yield break;
                 }
 
                 
             }
-
             else
             {
             LinkObject.transform.Rotate(new Vector3(0, Skill_1_RotateSpeed, 0));

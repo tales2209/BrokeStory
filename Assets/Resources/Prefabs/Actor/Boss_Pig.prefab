@@ -405,7 +405,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1697757212769208
 GameObject:
   m_ObjectHideFlags: 1
@@ -1430,7 +1430,7 @@ Animator:
   m_GameObject: {fileID: 1585881446722920}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: c6b644e8a94bba74e9224e50d333344a, type: 3}
-  m_Controller: {fileID: 9100000, guid: 44910ce8f01519641aa93e8ec0b32244, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1477,7 +1477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfaa5d88a444e194ca8cc84a1e0e334e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teamType: 1
+  teamType: 0
   _AIType: 3
 --- !u!137 &137555378311848054
 SkinnedMeshRenderer:
