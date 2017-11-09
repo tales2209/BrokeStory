@@ -20,9 +20,6 @@ using UnityEngine.AI;
 
 public class BossPigAI : BaseAI
 {
-
-    
-
     GameObject Spear;
 
     GameObject Prefabs;
@@ -276,10 +273,22 @@ public class BossPigAI : BaseAI
         // 와일문을 탈출한다.
         while (IsSkill || IsAttack)
         {
+            if (LinkObject.transform.Find("AttackParticle").gameObject.activeSelf == false)
+            {
+                Transform SmiteParticle = LinkObject.transform.Find("AttackParticle");
+                SmiteParticle.gameObject.SetActive(true);
+            }
+
             // 한프레임 동안은 while안을 돈다
             yield return new WaitForEndOfFrame();
         }
         //=========================================
+        if (LinkObject.transform.Find("AttackParticle").gameObject.activeSelf == true)
+        {
+            Transform SmiteParticle = LinkObject.transform.Find("AttackParticle");
+            SmiteParticle.gameObject.SetActive(false);
+        }
+
         AddNextAI(eAIStateType.Idle);
         yield return StartCoroutine(base.Attack());
     }
@@ -309,10 +318,17 @@ public class BossPigAI : BaseAI
     void WeaponSkill()
     {
         Vector3 CreatPos = new Vector3();
+
+        if (LinkObject.transform.Find("WeaponParticle").gameObject.activeSelf == false)
+        {
+            Transform SmiteParticle = LinkObject.transform.Find("WeaponParticle");
+            SmiteParticle.gameObject.SetActive(true);
+        }
+
         if (WeaponTimer == 5)
         {
             TargetPos.x = target.transform.position.x;
-            TargetPos.y = target.transform.position.y - 5;
+            TargetPos.y = target.transform.position.y - 10f;
             TargetPos.z = target.transform.position.z;
             CreatPos = new Vector3(TargetPos.x, TargetPos.y, TargetPos.z);
         }
@@ -331,9 +347,10 @@ public class BossPigAI : BaseAI
 
         // 해당 메서드 안에 들어왔을때 한번만 실행하고 탈출하기 위해 attackType를 바꿔준다.
 
-        attackType = AttackType.Normal_Attack;
 
-           for (int i = 0; i < 5; i++)
+        if (WeaponTimer <= 4 && WeaponTimer >= 3.8)
+        {
+            for (int j = 0; j < 3; j++)
             {
                 Prefabs = Instantiate(Spear, CreatPos + RandomPos(), Quaternion.identity);
 
@@ -342,19 +359,28 @@ public class BossPigAI : BaseAI
                     Prefabs.transform.SetParent(skillHolder.transform);
                 }
             }
+        }
 
 
         if (WeaponTimer < 1)
         {
+            if (LinkObject.transform.Find("WeaponParticle").gameObject.activeSelf == true)
+            {
+                Transform SmiteParticle = LinkObject.transform.Find("WeaponParticle");
+                SmiteParticle.gameObject.SetActive(false);
+            }
+
+            attackType = AttackType.Normal_Attack;
+
             SkillReady = false;
             // 리스트 삭제
             //int index = SkillList.IndexOf(SkillList[0]);
-            
+
             //for(int i = 0; i < SkillList.Count; i++)
             //{
             //    SkillList.RemoveAt(i);
             //}
-
+            WeaponTimer = 5f;
             AddNextAI(eAIStateType.Idle);
         }
     }
@@ -363,6 +389,15 @@ public class BossPigAI : BaseAI
     // Smite스킬
     void Smite()
     {
+        if (SmiteTimer == 5)
+        {
+            if (LinkObject.transform.Find("SmiteParticle").gameObject.activeSelf == false)
+            {
+                Transform SmiteParticle = LinkObject.transform.Find("SmiteParticle");
+                SmiteParticle.gameObject.SetActive(true);
+            }
+        }
+
         SmiteTimer -= Time.deltaTime;
 
         //if (SmiteTimer <= WaitingSmite)
@@ -376,9 +411,16 @@ public class BossPigAI : BaseAI
 
         if (SmiteTimer < 1)
         {
+            if (LinkObject.transform.Find("SmiteParticle").gameObject.activeSelf == true)
+            {
+                Transform SmiteParticle = LinkObject.transform.Find("SmiteParticle");
+                SmiteParticle.gameObject.SetActive(false);
+            }
+
             attackType = AttackType.Normal_Attack;
             SkillSmite = false;
             SkillReady = false;
+            SmiteTimer = 5f;
             //GameObject.Find("Weapon_1").GetComponentInParent<BoxCollider>().size = new Vector3(0.055f, 0.68f, 0.054f);
             AddNextAI(eAIStateType.Idle);
         }
@@ -440,7 +482,7 @@ public class BossPigAI : BaseAI
             SkillReady = false;
             // this.GetComponentInParent<BoxCollider>().size = new Vector3(1f, 1f, 1f);
             // AddNextAI(eAIStateType.Idle);
-            Timer = 0f;
+            DashTimer = 5f;
             AddNextAI(eAIStateType.Idle);
         }
     }

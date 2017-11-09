@@ -7,18 +7,26 @@ public class GameManger : MonoSingleton<GameManger>
     public Transform StartPoint;
     public Transform EnemyPoint;
 
-    private void Awake()
+    //private void Awake()
+    //{
+    //    Initialize();
+    //}
+
+    private void Start()
     {
         Initialize();
     }
 
-    void Initialize()
+    public void Initialize()
     {        
         GameObject go = ActorManager.Inst.GetPrefab(eActorType.Player);
         Actor player = ActorManager.Inst.InstantiateActor(go, StartPoint.transform.position);
 
-        go = ActorManager.Inst.GetPrefab(eActorType.Boss_Dragon);
+        go = ActorManager.Inst.GetPrefab(eActorType.Boss_Pig);
         Actor Enemy = ActorManager.Inst.InstantiateActor(go, EnemyPoint.transform.position);
+
+        //go = ActorManager.Inst.GetPrefab(eActorType.Boss_Dragon);
+        //Actor Enemy = ActorManager.Inst.InstantiateActor(go, EnemyPoint.transform.position);
 
         GameObject[] EnemyGo = GameObject.FindGameObjectsWithTag("Enemy");
         
@@ -28,5 +36,15 @@ public class GameManger : MonoSingleton<GameManger>
                 EnemyGo[i].GetComponent<Actor>().AI.SetTarget();
         }
 
+    }
+
+    public void LoadBattle()
+    {
+        UITools.Inst.ShowUI(eUIType.BattleUI);
+    }
+
+    public void DisableBattle()
+    {
+        UITools.Inst.HideUI(eUIType.BattleUI);
     }
 }

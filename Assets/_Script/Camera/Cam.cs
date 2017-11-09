@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cam : MonoBehaviour
+public class Cam : MonoSingleton<Cam>
 {    
     Transform Target = null;
     Vector3 OriginPos;
@@ -16,18 +16,23 @@ public class Cam : MonoBehaviour
     
 
 
-    private void Start()
-    {
-        Target = ActorManager.Inst.GetPlayer().transform;        
-    }
+    //private void Start()
+    //{
+    //    Target = ActorManager.Inst.GetPlayer().transform;
+    //}
 
     private void LateUpdate()
     {
         FollowCamera();   
     }
 
-    void FollowCamera()
+    public void FollowCamera()
     {
+        if (Target == null)
+        {
+            Target = ActorManager.Inst.GetPlayer().transform;
+        }
+
         Vector3 targetPos = Target.position;
         OriginPos = new Vector3(0, Height, -Distance);
 
