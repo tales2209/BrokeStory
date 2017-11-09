@@ -62,7 +62,6 @@ public class Scene_Manager : MonoSingleton<Scene_Manager>
                 Operation = SceneManager.LoadSceneAsync(NextType.ToString());
                 // 로딩바 생성
                 UITools.Inst.ShowLoadingUI(0.0f);
-
             }
             else
             {

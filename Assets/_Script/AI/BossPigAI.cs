@@ -27,7 +27,7 @@ public class BossPigAI : BaseAI
 
     GameObject Prefabs;
     Vector3 OriginPos;
-    float AttackRange = 5;
+    float AttackRange = 3;
     float Timer;
     float dist;
     public BaseObject target = null;
@@ -52,7 +52,6 @@ public class BossPigAI : BaseAI
 
     //====================
     GameObject skillHolder = null;
-    //public GameObject DashParticle;
 
     public void Awake()
     {
@@ -91,15 +90,12 @@ public class BossPigAI : BaseAI
                     {
                         Ani.SetInteger("SKILL", 4);
                         Dash();
-                        // 애니메이션
                     }
                     break;
                 case AttackType.Smite_Attack:
                     {
                         Ani.SetInteger("SKILL", 5);
                         Smite();
-                        // 애니메이션
-
                     }
                     break;
                 case AttackType.Weapon_Attack:
@@ -107,7 +103,6 @@ public class BossPigAI : BaseAI
                     
                         Ani.SetInteger("SKILL", 6);
                         WeaponSkill();
-                        // 애니메이션
                     }
                     break;
             }
@@ -130,19 +125,19 @@ public class BossPigAI : BaseAI
 
     protected override void ProcessAttack()
     {
-        if (10 <= Timer && SkillDash)
-        {
-            SkillReady = true;
-            attackType = AttackType.Dash_Attack;
-        }
+        //if (10 <= Timer && SkillDash)
+        //{
+        //    SkillReady = true;
+        //    attackType = AttackType.Dash_Attack;
+        //}
 
-        if (20 <= Timer && SkillSmite)
-        {
-            SkillReady = true;
-            attackType = AttackType.Smite_Attack;
-        }
+        //if (20 <= Timer && SkillSmite)
+        //{
+        //    SkillReady = true;
+        //    attackType = AttackType.Smite_Attack;
+        //}
 
-        if (30<= Timer && SkillWeapon)
+        if (3<= Timer && SkillWeapon)
         {
             SkillReady = true;
             attackType = AttackType.Weapon_Attack;
@@ -171,7 +166,6 @@ public class BossPigAI : BaseAI
         dist = 0f;
         AttackRange = 5f;
 
-        //target = GameObject.FindObjectOfType<Player_Test>();
         dist = Vector3.Distance(target.transform.position, LinkObject.transform.position);
 
         if (target != null)
@@ -193,32 +187,12 @@ public class BossPigAI : BaseAI
             {
                 AddNextAI(eAIStateType.Attack, target);
             }
-
-
-            //if (SkillReady)
-            //{
-            //    AddNextAI(eAIStateType.Attack, target);
-            //}
-
-            //if (dist < AttackRange)
-            //{
-            //    //Stop();
-            //    AddNextAI(eAIStateType.Attack, target);
-            //}
-            //else
-            //{
-            //    AddNextAI(eAIStateType.Move, target, target.transform.position);
-            //}
         }
         yield return StartCoroutine(base.Idle());
     }
 
     protected override IEnumerator Move()
     {
-        //dist = 0f;
-        //AttackRange = 5f;
-
-        //target = GameObject.FindObjectOfType<Player_Test>();
         dist = Vector3.Distance(target.transform.position, LinkObject.transform.position);
 
         if (target != null)
@@ -244,23 +218,6 @@ public class BossPigAI : BaseAI
             {
                 AddNextAI(eAIStateType.Attack, target);
             }
-
-            //if (dist < AttackRange)
-            //{
-            //    //Stop();
-            //    AddNextAI(eAIStateType.Attack, target);
-            //}
-            //else
-            //{
-            //    MovePosition = target.transform.position;
-
-            //    SetMove();
-
-            //    //AddNextAI(eAIStateType.Move, target, target.transform.position);
-            //    //NavAgent.speed = 10;
-            //    //NavAgent.acceleration = 10;
-            //    //NavAgent.SetDestination(target.transform.position);
-            //}
         }
 
         yield return StartCoroutine(base.Move());
@@ -282,7 +239,6 @@ public class BossPigAI : BaseAI
                 SmiteParticle.gameObject.SetActive(true);
             }
 
-            // 한프레임 동안은 while안을 돈다
             yield return new WaitForEndOfFrame();
         }
         //=========================================
@@ -331,7 +287,7 @@ public class BossPigAI : BaseAI
         if (WeaponTimer == 5)
         {
             TargetPos.x = target.transform.position.x;
-            TargetPos.y = target.transform.position.y - 20f;
+            TargetPos.y = target.transform.position.y - 5f;
             TargetPos.z = target.transform.position.z;
             CreatPos = new Vector3(TargetPos.x, TargetPos.y, TargetPos.z);
         }
@@ -344,7 +300,7 @@ public class BossPigAI : BaseAI
             skillHolder.name = "Spearholder";
             // LinkObject를 부모설정
             // 월드포지션 그대로 사용하겠다고 false값 설정
-            skillHolder.transform.SetParent(LinkObject.transform,false);
+            skillHolder.transform.SetParent(LinkObject.transform, false);
         }
 
         WeaponTimer -= Time.deltaTime;
@@ -359,7 +315,7 @@ public class BossPigAI : BaseAI
 
                 if (skillHolder != null)
                 {
-                    Prefabs.transform.SetParent(skillHolder.transform,false);
+                    Prefabs.transform.SetParent(skillHolder.transform, false);
                 }
             }
         }
@@ -493,7 +449,7 @@ public class BossPigAI : BaseAI
 
     Vector3 RandomPos()
     {
-        Vector3 Dir = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
+        Vector3 Dir = new Vector3(Random.Range(-1f, 1f), -3, Random.Range(-1f, 1f));
         return Dir.normalized * Random.Range(1, 5);
     }
     //====================================================================

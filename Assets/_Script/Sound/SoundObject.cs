@@ -17,7 +17,7 @@ public class SoundObject : MonoBehaviour
 
     void Update()
     {
-        SoundObj.Stop();
+        //SoundObj.Stop();
     }
 
     public void OnPlay(AudioClip clip)

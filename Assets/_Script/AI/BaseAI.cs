@@ -12,8 +12,6 @@ public class NextAI
 
 public class BaseAI : BaseObject
 {
-
-
     //BossPigAI에서 사용
     public AttackType attackType = AttackType.Normal_Attack;
     bool _IsSkill = false;
@@ -22,8 +20,6 @@ public class BaseAI : BaseObject
         get { return _IsSkill; }
         set { _IsSkill = value; }
     }
-
-
 
     protected List<NextAI> ListNextAI = new List<NextAI>();
 
