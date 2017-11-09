@@ -16,7 +16,7 @@ public class AttackAnimation : StateMachineBehaviour
         if (TargetActor != null
             && TargetActor.AI.CurretnState == eAIStateType.Attack)
         {
-            //TargetActor.AI.IsAttack = true;
+            TargetActor.AI.IsAttack = true;
             bIsAttack = true;
         }
     }
@@ -34,7 +34,7 @@ public class AttackAnimation : StateMachineBehaviour
         // 애니메이션이 끝날즈음 콜라이더 키워주고
 
         // 끝날때 다시 콜라이더를 줄여준다.
-        if (animatorStateInfo.normalizedTime >= 1.5f
+        if (animatorStateInfo.normalizedTime >= 2f
             && TargetActor.AI.IsAttack)
         {
             if (TargetActor.AI.CurretnState == eAIStateType.Attack)

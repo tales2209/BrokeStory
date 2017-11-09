@@ -16,6 +16,9 @@ using UnityEngine.AI;
 /// Has Exit Time 이 켜져 있으면 해당 애니메이션을 다 실행하고 다음걸로 넘어간다.
 /// Has Exit Time 이 꺼져 있으면 다음 애니메이션으로 바로 넘어간다.
 /// 
+/// SmiteEffect 변경
+/// WeaponSkill 위치 변경
+/// 
 /// </summary>
 
 public class BossPigAI : BaseAI
@@ -24,7 +27,7 @@ public class BossPigAI : BaseAI
 
     GameObject Prefabs;
     Vector3 OriginPos;
-    float AttackRange;
+    float AttackRange = 5;
     float Timer;
     float dist;
     public BaseObject target = null;
@@ -328,7 +331,7 @@ public class BossPigAI : BaseAI
         if (WeaponTimer == 5)
         {
             TargetPos.x = target.transform.position.x;
-            TargetPos.y = target.transform.position.y - 10f;
+            TargetPos.y = target.transform.position.y - 20f;
             TargetPos.z = target.transform.position.z;
             CreatPos = new Vector3(TargetPos.x, TargetPos.y, TargetPos.z);
         }
@@ -340,13 +343,13 @@ public class BossPigAI : BaseAI
             skillHolder = new GameObject();
             skillHolder.name = "Spearholder";
             // LinkObject를 부모설정
-            skillHolder.transform.SetParent(LinkObject.transform);
+            // 월드포지션 그대로 사용하겠다고 false값 설정
+            skillHolder.transform.SetParent(LinkObject.transform,false);
         }
 
         WeaponTimer -= Time.deltaTime;
 
         // 해당 메서드 안에 들어왔을때 한번만 실행하고 탈출하기 위해 attackType를 바꿔준다.
-
 
         if (WeaponTimer <= 4 && WeaponTimer >= 3.8)
         {
@@ -356,11 +359,10 @@ public class BossPigAI : BaseAI
 
                 if (skillHolder != null)
                 {
-                    Prefabs.transform.SetParent(skillHolder.transform);
+                    Prefabs.transform.SetParent(skillHolder.transform,false);
                 }
             }
         }
-
 
         if (WeaponTimer < 1)
         {
@@ -432,6 +434,8 @@ public class BossPigAI : BaseAI
     {
         if(DashTimer == 0)
         {
+            LinkObject.transform.LookAt(target.transform);
+
             Dir = (target.transform.position - LinkObject.transform.position).normalized;
 
             if (LinkObject.transform.Find("DashParticle").gameObject.activeSelf == false)
@@ -494,17 +498,29 @@ public class BossPigAI : BaseAI
     }
     //====================================================================
 
-    // Dash 상태일때 벽과 충돌시 IsSkill 을 종료 시킨다.
-    // 스크립트 합친 다음에 실험
+     //Dash 상태일때 벽과 충돌시 IsSkill 을 종료 시킨다.
+     //스크립트 합친 다음에 실험
     //private void OnTriggerEnter(Collider other)
     //{
-    //    if(attackType == AttackType.Dash_Attack)
+    //    if(LinkObject.transform.attackType == AttackType.Dash_Attack)
     //    {
     //        if(other.tag == "Wall")
     //        {
     //            IsSkill = false;
     //            AddNextAI(eAIStateType.Idle);
     //        }
+    //    }
+    //}
+
+    //void Looktarget(bool islook)
+    //{
+    //    if(islook == true)
+    //    {
+    //        LinkObject.transform.LookAt(target.transform);
+    //    }
+    //    else
+    //    {
+
     //    }
     //}
 }

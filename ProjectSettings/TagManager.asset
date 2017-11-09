@@ -8,6 +8,7 @@ TagManager:
   - HitBox
   - AttackBox
   - Storm
+  - Wall
   layers:
   - Default
   - TransparentFX
