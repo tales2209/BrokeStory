@@ -11,6 +11,7 @@ public class Skill_Fireball : MonoBehaviour {
     public float shakePower = 0.5f;
     public float movingSpeed = 1f;
     Vector3 orgPos;
+    GameObject Particle = null;
     
     List<Skill_Fireball> list_Fireball; //생성될때 추가된 리스트를 받아오기위한 변수
 
@@ -18,6 +19,7 @@ public class Skill_Fireball : MonoBehaviour {
 
     private void Awake()
     {
+        Particle = Resources.Load("Prefabs/Object/Effect/" + "FireballParticle") as GameObject;
         orgPos = transform.position;    //최초 생성위치 저장
     }
 
@@ -85,9 +87,19 @@ public class Skill_Fireball : MonoBehaviour {
         Destroy(gameObject);
     }
 
-
+    
     private void OnTriggerEnter(Collider other)
     {
+        //충돌한 게임오브젝트가 플레이어이고 파이어볼 생성된지 5초가 지났으면 데미지처리 & 파이어볼 삭제
+        if( other.gameObject == GameObject.FindGameObjectWithTag("Player") && time > 5)
+        {
+          Actor otherActor =  other.GetComponent<Actor>();
+            otherActor.ThrowEvent(ConstValue.EventKey_Hit);
+            Instantiate(Particle, transform.position, Quaternion.identity);
+
+            DestroyFireball();
+
+        }
         //other.GetComponent<Rigidbody>().AddForce(Vector3.forward * 100);
         //if(other.GetComponent<Actor>().IsPlayer ==true)
         //{

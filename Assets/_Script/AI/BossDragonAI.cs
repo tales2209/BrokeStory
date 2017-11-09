@@ -11,7 +11,8 @@ public class BossDragonAI : BaseAI
 
     //파이어볼 프리팹
     GameObject Prefab_Fireball = null;
-    
+    //파이어링 프리팹
+    GameObject Prefab_FireRing = null;
     //BASEAI를 돌릴것인지에 대한 BOOL
     bool b_UpdateBaseAI = true;
 
@@ -38,6 +39,7 @@ public class BossDragonAI : BaseAI
     {
         //AttackTarget = GameObject.FindObjectOfType<Player>() as BaseObject;
         Prefab_Fireball = Resources.Load("Prefabs/Object/Skill/FireBall") as GameObject;
+        Prefab_FireRing = Resources.Load("Prefabs/Object/Effect/" + "FireRing") as GameObject;
         List_Fireball = new List<Skill_Fireball>();
      
     }
@@ -131,8 +133,8 @@ public class BossDragonAI : BaseAI
     }
 
 
-
-
+    int EffectInitCount = 0;
+    public float FireballInitDistance = 2f;
     IEnumerator Skill_1()
     {
 
@@ -168,6 +170,8 @@ public class BossDragonAI : BaseAI
 
             if (FireballCount >= howManyFireball)   //파이어볼이 전부 생성된뒤
             {
+                
+
                 LinkObject.transform.LookAt(AttackTarget.transform);
                 //Ani.SetInteger("SKILL", 1);
                 //EFFECT OFF
@@ -177,12 +181,14 @@ public class BossDragonAI : BaseAI
                     stromEffect.gameObject.SetActive(false);
                 }
 
-                if (List_Fireball.Count <= 1)
+                if (List_Fireball.Count <= 0) // 생성된 파이어볼이 전부 디스트로이되어 파이어볼의 리스트의 파이어볼갯수가 0이 되었을때
                 {
+                    Destroy(FireballHolder);
                     Ani.SetInteger("SKILL", 0);
                     b_UpdateBaseAI = true;
                     IsAttack = false;
                     FireballCount = 0;
+                    EffectInitCount = 0;
                     _CurrentState = eAIStateType.Idle;
                     yield break;
                 }
@@ -192,10 +198,20 @@ public class BossDragonAI : BaseAI
 
             else
             {
-            LinkObject.transform.Rotate(new Vector3(0, Skill_1_RotateSpeed, 0));
+                //FireRing effect 생성
+                if (EffectInitCount == 0)
+                {
+                    ParticleSystem particle = Prefab_FireRing.GetComponent<ParticleSystem>();
+                    //particle.shape.radius = FireballInitDistance; 
+
+                    Instantiate(Prefab_FireRing, LinkObject.transform.position + Vector3.up * 0.6f  ,Prefab_FireRing.transform.rotation);
+                }
+                EffectInitCount++;
+
+                LinkObject.transform.Rotate(new Vector3(0, Skill_1_RotateSpeed, 0));
             fireballMakeTime += (int)Skill_1_RotateSpeed;
             //LinkObject.transform.rotation = Quaternion.Euler(0,(360/howManyFireball) * FireballCount,0);
-        Vector3 fireball_pos = LinkObject.transform.position + LinkObject.transform.forward * 2;
+        Vector3 fireball_pos = LinkObject.transform.position + LinkObject.transform.forward * FireballInitDistance ;
 
 
             if( fireballMakeTime >= (360/howManyFireball) * FireballCount)
