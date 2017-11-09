@@ -13,6 +13,7 @@ public enum eActorType
 {
     Player,
     Boss_Dragon,
+    Boss_Pig,
     //Shooter,
     Max
 }
@@ -70,4 +71,28 @@ public enum eRegenType
     None,
     Time,
     Triger
+}
+
+public enum eSoundType
+{
+    None,
+    BackGround,
+    Attack,
+    Dash,
+    Smite,
+    Weapon,
+}
+
+public enum eSceneType
+{
+    None,
+    LogoScene,
+    BattleScene,
+}
+
+public enum eUIType
+{
+    LogoUI,
+    LoadingUI,
+    BattleUI,
 }
