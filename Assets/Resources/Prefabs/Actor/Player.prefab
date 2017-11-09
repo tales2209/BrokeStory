@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 95988799353368738}
   - component: {fileID: 114410208735709012}
   - component: {fileID: 114974595856231516}
+  - component: {fileID: 195190503881764860}
   - component: {fileID: 65211590646624662}
   m_Layer: 8
   m_Name: Player
@@ -1710,8 +1711,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.04612641, y: -0.000060377643, z: -0.00030555204}
     m_Extent: {x: 0.0570381, y: 0.022350969, z: 0.020368984}
   m_DirtyAABB: 0
-<<<<<<< HEAD
-=======
 --- !u!195 &195190503881764860
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -1733,4 +1732,3 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
->>>>>>> db6a19a0fc06ef092b7f85f1a72ac90cf0564c38
