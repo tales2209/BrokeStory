@@ -8,8 +8,10 @@ public class BladeAttackBox : MonoBehaviour
     {
         if (other.gameObject.tag == "HitBox")
         {
-          Actor enemy =  other.GetComponentInParent<Actor>();
+            Actor enemy = other.GetComponentInParent<Actor>();
             enemy.ThrowEvent(ConstValue.EventKey_Hit);
+
+            EffectManager.Inst.AutoPlayEffect("Ice_Shatter", this.transform.parent, false);
         }
     }    
 }
