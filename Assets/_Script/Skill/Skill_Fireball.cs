@@ -90,15 +90,18 @@ public class Skill_Fireball : MonoBehaviour {
     
     private void OnTriggerEnter(Collider other)
     {
-        
-        //충돌한 게임오브젝트가 플레이어이고 파이어볼 생성된지 5초가 지났으면 데미지처리 & 파이어볼 삭제
-        if( other.gameObject == GameObject.FindGameObjectWithTag("Player") && time > 5)
+        if(other.gameObject.tag == "HitBox")    //충돌한 콜라이더가 HitBox이고
         {
-          Actor otherActor =  other.GetComponent<Actor>();
+        //충돌한 게임오브젝트가 플레이어이고 파이어볼 생성된지 5초가 지났으면 데미지처리 & 파이어볼 삭제
+        if( other.GetComponentInParent<Actor>().IsPlayer == true && time > 5)
+        {
+          Actor otherActor =  other.GetComponentInParent<Actor>();
             otherActor.ThrowEvent(ConstValue.EventKey_Hit);
             Instantiate(Particle, transform.position, Quaternion.identity);
 
             DestroyFireball();
+
+        }
 
         }
         //other.GetComponent<Rigidbody>().AddForce(Vector3.forward * 100);

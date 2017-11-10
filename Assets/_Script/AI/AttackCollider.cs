@@ -44,9 +44,13 @@ public class AttackCollider : MonoBehaviour
         //AI가 공격 행동 중이고
         if (Owner.AI.IsAttack)
         {
+            if(other.gameObject.tag == "HitBox")
+            {
             //충돌체가 플레이어이면
-            if (other.transform.GetComponent<Actor>().IsPlayer)
-                other.transform.GetComponent<Actor>().ThrowEvent(ConstValue.EventKey_Hit);
+            if (other.transform.GetComponentInParent<Actor>().IsPlayer)
+                other.transform.GetComponentInParent<Actor>().ThrowEvent(ConstValue.EventKey_Hit);
+
+            }
 
         }
     }

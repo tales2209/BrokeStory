@@ -106,7 +106,7 @@ public class BossDragonAI : BaseAI
         Stop();
         //공격 처리 들어가기 전의 잠깐의 텀을 준다
         //IsAttack = true;
-        yield return new WaitForEndOfFrame();
+        //yield return new WaitForEndOfFrame();
 
         while (IsAttack)
         {
@@ -135,6 +135,9 @@ public class BossDragonAI : BaseAI
 
     int EffectInitCount = 0;
     public float FireballInitDistance = 2f;
+
+
+
     IEnumerator Skill_1()
     {
 
@@ -150,7 +153,7 @@ public class BossDragonAI : BaseAI
         }
 
         b_Skill_1_ready = false;
-        Ani.SetInteger("State", 1); // Idle 애니메이션
+        Ani.SetInteger("STATE", 1); // Idle 애니메이션
 
         //Storm이펙트 ON
         if (LinkObject.transform.Find("StormEffect").gameObject.activeSelf == false)
@@ -170,9 +173,9 @@ public class BossDragonAI : BaseAI
 
             if (FireballCount >= howManyFireball)   //파이어볼이 전부 생성된뒤
             {
-                
+                Vector3 LookAtTarget = new Vector3(AttackTarget.transform.position.x, LinkObject.transform.position.y, AttackTarget.transform.position.z);
 
-                LinkObject.transform.LookAt(AttackTarget.transform);
+                LinkObject.transform.LookAt(LookAtTarget);
                 //Ani.SetInteger("SKILL", 1);
                 //EFFECT OFF
                 if (LinkObject.transform.Find("StormEffect").gameObject.activeSelf == true)

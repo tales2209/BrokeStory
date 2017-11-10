@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Boss : Actor
 {
+    int HP = 10;
     bool b_hitting = false;
     public override void ThrowEvent(string keyData, params object[] datas)
     {
@@ -22,6 +23,8 @@ public class Boss : Actor
 
     IEnumerator Hit()
     {
+        HP--;
+
         b_hitting = true; //맞는거 프로세스 중에는 중첩해서 데미지입게 안할꺼
 
         AI.ChangeAnimation(eAIStateType.Hit);   //맞는 애니메이션
@@ -31,7 +34,7 @@ public class Boss : Actor
 
 
 
-        yield return new WaitForSeconds(3f);    // 1초대기
+        yield return new WaitForSeconds(1f);    // 1초대기
 
         AI.ChangeAnimation();   //현재 상태에 맞는 애니메이션 다시 실행
         AI._bUpdateAI = false; //업데이트 다시 진행
@@ -40,6 +43,9 @@ public class Boss : Actor
 
 
         b_hitting = false;
+
+        if (HP == 0)
+            Destroy(gameObject);
         yield return null;
     }
 
