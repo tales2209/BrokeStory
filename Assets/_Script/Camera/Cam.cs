@@ -14,8 +14,6 @@ public class Cam : MonoSingleton<Cam>
     [Range(-50, 100)]
     public float Far = 0;
     
-
-
     //private void Start()
     //{
     //    Target = ActorManager.Inst.GetPlayer().transform;

@@ -31,16 +31,10 @@ public class Boss : Actor
         AI.Stop();                              //움직임 멈춤
         AI._bUpdateAI = true;                   //AI 업데이트 멈춤
 
-
-
-
         yield return new WaitForSeconds(1f);    // 1초대기
 
         AI.ChangeAnimation();   //현재 상태에 맞는 애니메이션 다시 실행
         AI._bUpdateAI = false; //업데이트 다시 진행
-
-
-
 
         b_hitting = false;
 
@@ -48,8 +42,4 @@ public class Boss : Actor
             Destroy(gameObject);
         yield return null;
     }
-
-
-
-
 }

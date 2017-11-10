@@ -6,13 +6,7 @@ public class GameManger : MonoSingleton<GameManger>
 {
     public Transform StartPoint;
     public Transform EnemyPoint;
-
-    //private void Awake()
-    //{
-    //    Initialize();
-    //}
-
-    private void Start()
+    private void Awake()
     {
         //Initialize();
     }
@@ -41,11 +35,5 @@ public class GameManger : MonoSingleton<GameManger>
     public void LoadBattle()
     {
         Initialize();
-        UITools.Inst.ShowUI(eUIType.BattleUI);
-    }
-
-    public void DisableBattle()
-    {
-        UITools.Inst.HideUI(eUIType.BattleUI);
     }
 }

@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManager : MonoSingleton<SoundManager>
+public class SoundManager : MonoBehaviour
 {
+    public static SoundManager _instance;
 
     // 클립은 재생해야할 오디오 파일들의 집합?
     // 소스는 실제로 재생할 객체
     Dictionary<eSoundType, AudioClip> audioDic = new Dictionary<eSoundType, AudioClip>();
-    //Dictionary<string, AudioClip> audioDic = new Dictionary<string, AudioClip>();
     List<SoundObject> SourceList = new List<SoundObject>();
 
     GameObject audioSourcePrefab = null;
     private void Awake()
     {
+        _instance = this;
         audioSourcePrefab = Resources.Load("Prefabs/Sound/" + "SoundObject") as GameObject;
     }
 
