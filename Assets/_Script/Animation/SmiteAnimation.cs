@@ -5,7 +5,6 @@ using UnityEngine;
 public class SmiteAnimation : StateMachineBehaviour {
 
     Actor TargetActor;
-    bool bIsAttack = false;
 
     public override void OnStateEnter(
         Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
@@ -18,7 +17,6 @@ public class SmiteAnimation : StateMachineBehaviour {
         {
             TargetActor.AI.IsAttack = true;
             TargetActor.AI.IsSkill = true;
-            bIsAttack = false;
         }
     }
 

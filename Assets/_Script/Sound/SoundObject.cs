@@ -6,11 +6,11 @@ public class SoundObject : MonoBehaviour
 {
     AudioClip audioClip;
     AudioSource SoundObj;
-    eSoundType _esoundType = eSoundType.None;
+    //eSoundType _esoundType = eSoundType.None;
 
     void Start()
     {
-        //soundManager = GetComponent<SoundManager>();
+        SoundObj = GetComponent<AudioSource>();
 
         // Init으로 초기화 작업
     }

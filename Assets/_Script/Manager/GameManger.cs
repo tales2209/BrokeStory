@@ -14,7 +14,7 @@ public class GameManger : MonoSingleton<GameManger>
 
     private void Start()
     {
-        Initialize();
+        //Initialize();
     }
 
     public void Initialize()
@@ -40,6 +40,7 @@ public class GameManger : MonoSingleton<GameManger>
 
     public void LoadBattle()
     {
+        Initialize();
         UITools.Inst.ShowUI(eUIType.BattleUI);
     }
 
