@@ -17,16 +17,20 @@ public class BossDragonAI : BaseAI
     bool b_UpdateBaseAI = true;
 
     float time = 0; //스킬 시간체크를 위해 흐른 시간을 저장할 변수
+    public float attackRange = 2f;  //일반공격 사거리
     //SKILL_1 필요한 변수
+    public float Skill_Fireball_CoolTime = 10f; //파이어볼 스킬 쿨타임
+    int EffectInitCount = 0;    //이펙트 생성을 제한하기위한 변수
+    public float FireballInitDistance = 3f;//파이어볼 생성 거리
     bool b_Skill_1_ready = false;   //쿨타임이 끝나서 스킬 사용이 가능한지에 대한 BOOL값
     List<Skill_Fireball> List_Fireball; //생성한 파이어볼 담는 리스트
     int FireballCount = 0;  //현재 파이어볼 개수
     GameObject FireballHolder = null;   //생성된 파이어볼 담을 오브젝트
 
     int fireballMakeTime = 0;   //파이어볼 타이밍체크
-    public int howManyFireball = 24; //파이어볼 생성 갯수
-    public float Skill_1_RotateSpeed = 5f;  //파이어볼 생성할때 회전 속도
-    public float attackRange = 2f;
+    public int howManyFireball = 240; //파이어볼 생성 갯수
+    public float Skill_1_RotateSpeed = 10f;  //파이어볼 생성할때 회전 속도
+
 
     public override void SetTarget()
     {
@@ -133,14 +137,12 @@ public class BossDragonAI : BaseAI
     }
 
 
-    int EffectInitCount = 0;
-    public float FireballInitDistance = 2f;
 
 
 
     IEnumerator Skill_1()
     {
-
+        float FireballDistance = Random.Range(FireballInitDistance, FireballInitDistance+2.0f);
         ListNextAI.Clear();
 
         fireballMakeTime = 0;
@@ -211,20 +213,20 @@ public class BossDragonAI : BaseAI
                 }
                 EffectInitCount++;
 
-                LinkObject.transform.Rotate(new Vector3(0, Skill_1_RotateSpeed, 0));
-            fireballMakeTime += (int)Skill_1_RotateSpeed;
+
+
+                LinkObject.transform.Rotate(new Vector3(0, Skill_1_RotateSpeed, 0));    //드래곤 회전
+            fireballMakeTime += (int)Skill_1_RotateSpeed;       //회전한만큼 fireballMakeTime 증가
             //LinkObject.transform.rotation = Quaternion.Euler(0,(360/howManyFireball) * FireballCount,0);
-        Vector3 fireball_pos = LinkObject.transform.position + LinkObject.transform.forward * FireballInitDistance ;
-
-
+        Vector3 fireball_pos = LinkObject.transform.position + LinkObject.transform.forward * FireballDistance;
             if( fireballMakeTime >= (360/howManyFireball) * FireballCount)
             {
                 GameObject go = Instantiate(Prefab_Fireball, fireball_pos, Quaternion.identity);
                 List_Fireball.Add(go.transform.GetComponent<Skill_Fireball>());
                 go.GetComponent<Skill_Fireball>().SetListFireBall(List_Fireball);
                 go.transform.SetParent(FireballHolder.transform);
-                go.transform.rotation = Quaternion.Euler(0, 60 * FireballCount, 0);
-             FireballCount++;
+                    go.transform.rotation = Quaternion.Euler(0, 30 * FireballCount, 0);
+                    FireballCount++;
 
             }
             
@@ -243,7 +245,6 @@ public class BossDragonAI : BaseAI
         
 
     }
-
 
     private void Update()
     {

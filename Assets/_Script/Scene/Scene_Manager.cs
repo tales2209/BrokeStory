@@ -89,7 +89,7 @@ public class Scene_Manager : MonoSingleton<Scene_Manager>
                     //GameManger.Inst.Initialize();
                     // 씬을 불러올때 Init을 해줘도 괜찮다.
                     //Cam.Inst.FollowCamera();
-                    SoundManager.Inst.AudioPlay(eSoundType.BackGround);
+                    //SoundManager.Inst.AudioPlay(eSoundType.BackGround);
                 }
                 break;
             default:

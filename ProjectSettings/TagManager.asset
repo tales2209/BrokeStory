@@ -9,6 +9,7 @@ TagManager:
   - AttackBox
   - Storm
   - Wall
+  - AttackPos
   layers:
   - Default
   - TransparentFX

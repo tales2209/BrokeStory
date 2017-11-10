@@ -356,7 +356,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4309481292242340}
   - component: {fileID: 137717284706164766}
-  - component: {fileID: 114750327757727118}
   - component: {fileID: 54380433471515606}
   m_Layer: 8
   m_Name: Stone
@@ -709,7 +708,7 @@ GameObject:
   - component: {fileID: 4195540087584992}
   m_Layer: 8
   m_Name: Bip01 R Hand
-  m_TagString: Untagged
+  m_TagString: AttackPos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1557,17 +1556,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c081f9237e99dc64b89f87cc8d7f330c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114750327757727118
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1409766406865194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81d6eb2284995614eb903abe3fec112f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114974595856231516
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1579,7 +1567,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb10942c1bf22e14fa3adf5e6b739bd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
 --- !u!137 &137179375022909114
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
