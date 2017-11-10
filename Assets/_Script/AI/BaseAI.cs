@@ -271,12 +271,12 @@ public class BaseAI : BaseObject
     {
         if(AIState != eAIStateType.None)    //매개변수 주어졌다면 현재상태 바꾸지않고 애니메이션만 해당 enum값에 해당하는걸로 바꿈
         {
-        Ani.SetInteger("State", (int)AIState);
+        Ani.SetInteger("STATE", (int)AIState);
 
         }
         else
         {
-            Ani.SetInteger("State", (int)_CurrentState);
+            Ani.SetInteger("STATE", (int)_CurrentState);
         }
     }
 }
