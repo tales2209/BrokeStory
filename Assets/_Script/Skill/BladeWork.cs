@@ -47,6 +47,7 @@ public class BladeWork : MonoBehaviour
     public void Initialize()
     {
         StartCoroutine(BladeWorkInstantiate());
+        EffectManager.Inst.InitEffect("BladeWork", this.transform.Find("BladeWorkEffectPos"));        
     }
 
     IEnumerator BladeWorkInstantiate()
@@ -92,7 +93,10 @@ public class BladeWork : MonoBehaviour
         MainPivot.transform.position = transform.position;
 
         if (BladeWorkTime >= FinishTime)
+        {
             BladeWorkFireReady();
+            EffectManager.Inst.DestroyEffect("BladeWork");
+        }
     }
 
     void BladeWorkFireReady()
@@ -165,6 +169,8 @@ public class BladeWork : MonoBehaviour
         {
             StartCoroutine(BladeWorkMove(SwordList[pivot - i].Sword.transform));
             StartCoroutine(BladeWorkMove(SwordList[pivot + i + 1].Sword.transform));
+            EffectManager.Inst.AutoPlayEffect("Orb", SwordList[pivot - i].Sword.transform);
+            EffectManager.Inst.AutoPlayEffect("Orb", SwordList[pivot + i + 1].Sword.transform);
 
             SwordList[pivot - i].Fire = true;
             SwordList[pivot + i + 1].Fire = true;

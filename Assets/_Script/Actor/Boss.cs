@@ -51,9 +51,6 @@ public class Boss : Actor
         if(HP != 0)
         AI.ChangeAnimation(eAIStateType.Hit);   //맞는 애니메이션
 
-
-
-
         yield return new WaitForSeconds(1f);    // 1초대기
 
         if (HP == 0)
@@ -62,15 +59,8 @@ public class Boss : Actor
         AI.ChangeAnimation();   //현재 상태에 맞는 애니메이션 다시 실행
         AI._bUpdateAI = false; //업데이트 다시 진행
 
-
-
-
         b_hitting = false;
 
         yield return null;
     }
-
-
-
-
 }
