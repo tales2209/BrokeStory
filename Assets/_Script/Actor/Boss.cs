@@ -19,8 +19,10 @@ public class Boss : Actor
         {
             case ConstValue.EventKey_Hit:
                 {
+                    
                     GameObject HitPos = datas[0] as GameObject;
-                    if(!b_hitting)
+                    
+                    if (!b_hitting)
                     StartCoroutine(Hit(HitPos));
                 }
                 break;
