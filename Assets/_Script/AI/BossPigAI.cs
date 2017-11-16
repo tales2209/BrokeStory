@@ -26,7 +26,6 @@ public class BossPigAI : BaseAI
     GameObject Spear;
 
     GameObject Prefabs;
-    Vector3 OriginPos;
     float AttackRange = 3;
     float Timer;
     float dist;
@@ -55,7 +54,6 @@ public class BossPigAI : BaseAI
 
     public void Awake()
     {
-        OriginPos = transform.position;
         //====================================
         // 스킬 로드
 

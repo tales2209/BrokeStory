@@ -6,14 +6,12 @@ public class WeaponAnimation : StateMachineBehaviour
 {
     Actor TargetActor;
     bool bIsAttack = false;
-    BossPigAI monsterAI;
 
     public override void OnStateEnter(
         Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
         // TargetActor = animator.transform.parent.GetComponent<Actor>();
         TargetActor = animator.GetComponentInParent<Actor>();
-        monsterAI = TargetActor.AI as BossPigAI;
 
         if (TargetActor != null
             && TargetActor.AI.CurretnState == eAIStateType.Attack)

@@ -85,14 +85,15 @@ public class Scene_Manager : MonoSingleton<Scene_Manager>
                 break;
             case eSceneType.BattleScene:
                 {
+                    // if (CurrentType == eSceneType.BattleScene)
+                    // GameManger.Inst.Initialize();
                     GameManger.Inst.LoadBattle();
-                    //GameManger.Inst.Initialize();
+                    // GameManger.Inst.Initialize();
                     // 씬을 불러올때 Init을 해줘도 괜찮다.
-                    //Cam.Inst.FollowCamera();
-                    SoundManager.Inst.AudioPlay(eSoundType.BackGround);
+                    // Cam.Inst.FollowCamera();
+                    SoundManager._instance.AudioPlay(eSoundType.BackGround);
+                    //HPBoard.Inst.CreateHPBar();
                 }
-                break;
-            default:
                 break;
         }
     }

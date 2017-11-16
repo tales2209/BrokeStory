@@ -7,10 +7,10 @@ public class GameManger : MonoSingleton<GameManger>
     public Transform StartPoint;
     public Transform EnemyPoint;
 
-    //private void Awake()
-    //{
-    //    Initialize();
-    //}
+    private void Awake()
+    {
+        Initialize();
+    }
 
     private void Start()
     {
