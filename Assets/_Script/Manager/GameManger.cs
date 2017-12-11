@@ -9,12 +9,12 @@ public class GameManger : MonoSingleton<GameManger>
 
     private void Awake()
     {
-        Initialize();
+        //Initialize();
     }
 
     private void Start()
     {
-        Initialize();
+        //Initialize();
     }
 
     public void Initialize()
@@ -50,6 +50,7 @@ public class GameManger : MonoSingleton<GameManger>
     public void LoadBattle()
     {
         UITools.Inst.ShowUI(eUIType.BattleUI);
+        Initialize();
     }
 
     public void DisableBattle()
